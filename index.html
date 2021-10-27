@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>BATTLEGROUNDS</title>
+</head>
+<body>
+	<section>
+		<audio id="audio" src="sound.wav" autostart="false"></audio>
+	</section>
+	<script>
+	document.addEventListener('click',  function(e){
+		let  body = document.querySelector('body');
+		let bullet = document.createElement('span');
+		bullet.classList.add('bullet');
+		let x = e.offsetX;
+		let y = e.offsetY;
+		bullet.style.left = x+'px';
+		bullet.style.top = y+'px';
+		body.appendChild(bullet);
+
+		
+
+		// add bullet sound on click
+		let sound = document.getElementById('audio');
+		sound.play();
+
+		// apper blood on screem after click 
+		
+		// add random blood image
+		let images = [
+		'url("blood1.png")',
+		'url("blood2.png")',
+		'url("blood3.png")',
+		'url("blood5.png")',
+		];
+		let blood = document.createElement('span');
+		blood.classList.add('blood');
+
+		let bg = images[Math.floor(Math.random() * images.length)];
+		blood.style.backgroundImage = bg;
+
+		blood.style.left = Math.random() * innerWidth + 'px';
+		blood.style.top = Math.random() * innerHeight + 'px';
+		body.appendChild(blood);
+
+		// revome bullet and blood after 4 seconds
+		setTimeout(function(){
+			bullet.remove();
+			blood.remove();
+		},4000);
+})
+	
+	</script>
+</body>
+</html>
